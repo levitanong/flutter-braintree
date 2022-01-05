@@ -53,6 +53,10 @@ public class FlutterBraintreeCustom extends AppCompatActivity implements Payment
                 .expirationMonth(intent.getStringExtra("expirationMonth"))
                 .expirationYear(intent.getStringExtra("expirationYear"))
                 .cvv(intent.getStringExtra("cvv"));
+        String streetAddress = intent.getStringExtra("streetAddress");
+        if (streetAddress != null) {
+            builder.streetAddress(streetAddress);
+        }
         Card.tokenize(braintreeFragment, builder);
     }
 
