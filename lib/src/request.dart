@@ -85,6 +85,7 @@ class BraintreeCreditCardRequest {
     required this.expirationMonth,
     required this.expirationYear,
     required this.cvv,
+    this.streetAddress,
   });
 
   /// Number shown on the credit card.
@@ -99,11 +100,15 @@ class BraintreeCreditCardRequest {
   /// A 3 or 4 digit card verification value assigned to credit cards.
   String cvv;
 
+  /// The street address associated with the card’s billing address
+  String? streetAddress;
+
   Map<String, dynamic> toJson() => {
         'cardNumber': cardNumber,
         'expirationMonth': expirationMonth,
         'expirationYear': expirationYear,
         'cvv': cvv,
+        if (streetAddress != null) 'streetAddress': streetAddress,
       };
 }
 
