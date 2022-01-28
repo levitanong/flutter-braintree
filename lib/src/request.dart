@@ -86,15 +86,19 @@ class BraintreeCreditCardRequest {
     required this.expirationYear,
     required this.cvv,
     this.postalCode,
+    this.cardholderName,
+    this.firstName,
+    this.lastName,
     this.company,
     this.streetAddress,
     this.extendedAddress,
     this.locality,
     this.region,
     this.countryName,
-    this.countryCodeAlpha2;
-    this.countryCodeAlpha3;
-    this.countryCodeNumeric;
+    this.countryCodeAlpha2,
+    this.countryCodeAlpha3,
+    this.countryCodeNumeric,
+    this.countryCode,
   });
 
   /// Number shown on the credit card.
@@ -109,17 +113,26 @@ class BraintreeCreditCardRequest {
   /// A 3 or 4 digit card verification value assigned to credit cards.
   String cvv;
 
-  /// The following are billing address related
-  String? postalCode
-  String? company
+  // The following fields (postalCode to region) are the intersection of the iOS and Android APIs:
+  // https://braintree.github.io/braintree_ios/current/Classes/BTCard.html
+  // https://www.javadoc.io/doc/com.braintreepayments.api/braintree/latest/com/braintreepayments/api/models/CardBuilder.html
+  String? postalCode;
+  String? cardholderName;
+  String? firstName;
+  String? lastName;
+  String? company;
   String? streetAddress;
   String? extendedAddress;
   String? locality;
   String? region;
+  // The following fields (countryName to countryCode) are the union of iOS and Android APIs.
   String? countryName;
   String? countryCodeAlpha2;
   String? countryCodeAlpha3;
   String? countryCodeNumeric;
+
+  /// Equivalent of countryCodeAlpha3
+  String? countryCode;
 
   Map<String, dynamic> toJson() => {
         'cardNumber': cardNumber,
@@ -127,6 +140,9 @@ class BraintreeCreditCardRequest {
         'expirationYear': expirationYear,
         'cvv': cvv,
         if (postalCode != null) 'postalCode': postalCode,
+        if (cardholderName != null) 'cardholderName': cardholderName,
+        if (firstName != null) 'firstName': firstName,
+        if (lastName != null) 'lastName': lastName,
         if (company != null) 'company': company,
         if (streetAddress != null) 'streetAddress': streetAddress,
         if (extendedAddress != null) 'extendedAddress': extendedAddress,
@@ -135,7 +151,9 @@ class BraintreeCreditCardRequest {
         if (countryName != null) 'countryName': countryName,
         if (countryCodeAlpha2 != null) 'countryCodeAlpha2': countryCodeAlpha2,
         if (countryCodeAlpha3 != null) 'countryCodeAlpha3': countryCodeAlpha3,
-        if (countryCodeNumeric != null) 'countryCodeNumeric': countryCodeNumeric,
+        if (countryCodeNumeric != null)
+          'countryCodeNumeric': countryCodeNumeric,
+        if (countryCode != null) 'countryCode': countryCode,
       };
 }
 
