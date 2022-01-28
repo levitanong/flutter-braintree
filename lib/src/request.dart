@@ -91,10 +91,10 @@ class BraintreeCreditCardRequest {
   /// Number shown on the credit card.
   String cardNumber;
 
-  /// Two didgit expiration month, e.g. `'05'`.
+  /// Two digit expiration month, e.g. `'05'`.
   String expirationMonth;
 
-  /// Four didgit expiration year, e.g. `'2021'`.
+  /// Four digit expiration year, e.g. `'2021'`.
   String expirationYear;
 
   /// A 3 or 4 digit card verification value assigned to credit cards.
