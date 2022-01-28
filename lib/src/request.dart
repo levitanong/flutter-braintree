@@ -85,7 +85,16 @@ class BraintreeCreditCardRequest {
     required this.expirationMonth,
     required this.expirationYear,
     required this.cvv,
+    this.postalCode,
+    this.company,
     this.streetAddress,
+    this.extendedAddress,
+    this.locality,
+    this.region,
+    this.countryName,
+    this.countryCodeAlpha2;
+    this.countryCodeAlpha3;
+    this.countryCodeNumeric;
   });
 
   /// Number shown on the credit card.
@@ -100,15 +109,33 @@ class BraintreeCreditCardRequest {
   /// A 3 or 4 digit card verification value assigned to credit cards.
   String cvv;
 
-  /// The street address associated with the card’s billing address
+  /// The following are billing address related
+  String? postalCode
+  String? company
   String? streetAddress;
+  String? extendedAddress;
+  String? locality;
+  String? region;
+  String? countryName;
+  String? countryCodeAlpha2;
+  String? countryCodeAlpha3;
+  String? countryCodeNumeric;
 
   Map<String, dynamic> toJson() => {
         'cardNumber': cardNumber,
         'expirationMonth': expirationMonth,
         'expirationYear': expirationYear,
         'cvv': cvv,
+        if (postalCode != null) 'postalCode': postalCode,
+        if (company != null) 'company': company,
         if (streetAddress != null) 'streetAddress': streetAddress,
+        if (extendedAddress != null) 'extendedAddress': extendedAddress,
+        if (locality != null) 'locality': locality,
+        if (region != null) 'region': region,
+        if (countryName != null) 'countryName': countryName,
+        if (countryCodeAlpha2 != null) 'countryCodeAlpha2': countryCodeAlpha2,
+        if (countryCodeAlpha3 != null) 'countryCodeAlpha3': countryCodeAlpha3,
+        if (countryCodeNumeric != null) 'countryCodeNumeric': countryCodeNumeric,
       };
 }
 
